@@ -1,38 +1,39 @@
-import express from "express";
-import { ApolloServer, gql } from "apollo-server-express";
-import mongoose from "mongoose";
-import cors from "cors";
-import dotenv from "dotenv";
+const { ApolloServer } = require("apollo-server-express");
+const express = require("express");
+const mongoose = require("mongoose");
+const typeDefs = require("./graphql/schema.js");
+const resolvers = require("./graphql/resolvers.js");
+const cors = require("cors");
 
-dotenv.config();
+require("dotenv").config();
 
-const mongoURI = `mongodb://${process.env.MONGODB_USERNAME}:Admin123!@10.115.3.31:27017/?authMechanism=DEFAULT`;
+async function startServer() {
+  const server = new ApolloServer({ typeDefs, resolvers });
+  await server.start();
 
-mongoose.connect(mongoURI);
+  const app = express();
+  app.use(cors());
 
-const db = mongoose.connection;
-db.on("error", console.error.bind(console, "MongoDB connection error:"));
-db.once("open", () => {
-  console.log("Connected to MongoDB");
-});
+  server.applyMiddleware({ app });
 
-const app = express();
-app.use(cors());
+  const username = process.env.MONGODB_USERNAME || "";
+  const password = process.env.MONGODB_PASSWORD || "";
 
-const typeDefs = gql`
-  // Your GraphQL schema here
-`;
+  await mongoose.connect(
+    `mongodb://${encodeURIComponent(username)}:${encodeURIComponent(
+      password
+    )}@${process.env.MONGODB_IP}:${
+      process.env.MONGODB_PORT
+    }/?authMechanism=DEFAULT`,
+    {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    }
+  );
 
-const resolvers = {
-  // Your GraphQL resolvers here
-};
+  app.listen(4000, () => {
+    console.log("Server listening on Port 4000");
+  });
+}
 
-const server = new ApolloServer({ typeDefs, resolvers });
-
-server.applyMiddleware({ app: app as any });
-
-const PORT = process.env.PORT || 4000;
-
-app.listen(PORT, () => {
-  console.log(`Server running at http://localhost:${PORT}/graphql`);
-});
+startServer().catch((error) => console.error("Error starting server:", error));
