@@ -1,6 +1,6 @@
-import React from "react";
 import { useQuery } from "@apollo/client";
 import { GET_ALL_FRISEURE } from "./queries";
+import ListingPage from "./pages/ListingPage";
 
 const App = () => {
   const { loading, error, data } = useQuery(GET_ALL_FRISEURE);
@@ -11,8 +11,8 @@ const App = () => {
   console.log(data);
 
   return (
-    <div className="h-34 w-17 bg-red-400">
-      <h1>App</h1>
+    <div className="bg-gray-200 h-screen">
+      <ListingPage />
     </div>
   );
 };
