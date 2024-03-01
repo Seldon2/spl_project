@@ -1,8 +1,8 @@
 import { gql } from "@apollo/client";
 
 const GET_ALL_FRISEURE = gql`
-  query Query {
-    friseure {
+  query GetAllFriseure {
+    getAllFriseure {
       _id
       name
       adresse {
@@ -10,12 +10,11 @@ const GET_ALL_FRISEURE = gql`
         plz
         stadt
       }
-      bildURL
+      kontakt {
+        telefon
+        email
+      }
       oeffnungszeiten {
-        sonntag {
-          von
-          bis
-        }
         montag {
           von
           bis
@@ -46,7 +45,6 @@ const GET_ALL_FRISEURE = gql`
         name
         spezialgebiet
         verfuegbarkeit {
-          sonntag
           montag
           dienstag
           mittwoch

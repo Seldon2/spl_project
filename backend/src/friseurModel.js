@@ -1,3 +1,4 @@
+// friseurModel.js
 const mongoose = require("mongoose");
 
 const MitarbeiterSchema = new mongoose.Schema({
@@ -13,37 +14,6 @@ const MitarbeiterSchema = new mongoose.Schema({
   },
 });
 
-const OeffnungszeitenSchema = new mongoose.Schema({
-  sonntag: {
-    von: String,
-    bis: String,
-  },
-  montag: {
-    von: String,
-    bis: String,
-  },
-  dienstag: {
-    von: String,
-    bis: String,
-  },
-  mittwoch: {
-    von: String,
-    bis: String,
-  },
-  donnerstag: {
-    von: String,
-    bis: String,
-  },
-  freitag: {
-    von: String,
-    bis: String,
-  },
-  samstag: {
-    von: String,
-    bis: String,
-  },
-});
-
 const FriseurSchema = new mongoose.Schema({
   name: String,
   adresse: {
@@ -55,11 +25,36 @@ const FriseurSchema = new mongoose.Schema({
     telefon: String,
     email: String,
   },
-  oeffnungszeiten: OeffnungszeitenSchema,
+  oeffnungszeiten: {
+    montag: {
+      von: String,
+      bis: String,
+    },
+    dienstag: {
+      von: String,
+      bis: String,
+    },
+    mittwoch: {
+      von: String,
+      bis: String,
+    },
+    donnerstag: {
+      von: String,
+      bis: String,
+    },
+    freitag: {
+      von: String,
+      bis: String,
+    },
+    samstag: {
+      von: String,
+      bis: String,
+    },
+  },
   angeboteneDienstleistungen: [String],
   mitarbeiter: [MitarbeiterSchema],
 });
 
-const Friseur = mongoose.model("Friseur", FriseurSchema);
+const FriseurModel = mongoose.model("Friseur", FriseurSchema, "Friseure"); // "Friseure" ist der Name der Collection
 
-module.exports = Friseur;
+module.exports = FriseurModel;
