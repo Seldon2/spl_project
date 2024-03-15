@@ -1,0 +1,136 @@
+[
+  {
+    "name": "Haarzauber",
+    "adresse": {
+      "strasse": "Hoechsterstrasse 41f",
+      "plz": "6850",
+      "stadt": "Dornbirn"
+    },
+    "kontakt": {
+      "telefon": "+43 123 456789",
+      "email": "info@haarzauber.at"
+    },
+    "oeffnungszeiten": {
+      "montag": {
+        "von": "09:00",
+        "bis": "18:00"
+      },
+      "dienstag": {
+        "von": "09:00",
+        "bis": "18:00"
+      },
+      "mittwoch": {
+        "von": "09:00",
+        "bis": "14:00"
+      },
+      "donnerstag": {
+        "von": "10:00",
+        "bis": "20:00"
+      },
+      "freitag": {
+        "von": "09:00",
+        "bis": "18:00"
+      },
+      "samstag": {
+        "von": "10:00",
+        "bis": "15:00"
+      }
+    },
+    "angeboteneDienstleistungen": ["Haarschnitt", "Haarstyling", "Faerben"],
+    "mitarbeiter": [
+      {
+        "name": "Anna Mueller",
+        "spezialgebiet": "Farbexperte",
+        "verfuegbarkeit": {
+          "montag": true,
+          "dienstag": true,
+          "mittwoch": false,
+          "donnerstag": true,
+          "freitag": true,
+          "samstag": false
+        }
+      },
+      {
+        "name": "Max Schmidt",
+        "spezialgebiet": "Herrenhaarschnitte",
+        "verfuegbarkeit": {
+          "montag": true,
+          "dienstag": true,
+          "mittwoch": true,
+          "donnerstag": false,
+          "freitag": true,
+          "samstag": true
+        }
+      }
+    ]
+  },
+  {
+    "name": "Schnitt & Stil",
+    "adresse": {
+      "strasse": "Bundesstrasse 88",
+      "plz": "6923",
+      "stadt": "Lauterach"
+    },
+    "kontakt": {
+      "telefon": "+43 123 456789",
+      "email": "info@schnittundstil.at"
+    },
+    "oeffnungszeiten": {
+      "sonntag": {
+        "von": "10:30",
+        "bis": "16:30"
+      },
+      "montag": {
+        "von": "09:00",
+        "bis": "18:00"
+      },
+      "dienstag": {
+        "von": "09:00",
+        "bis": "18:00"
+      },
+      "mittwoch": {
+        "von": "09:00",
+        "bis": "14:30"
+      },
+      "donnerstag": {
+        "von": "11:30",
+        "bis": "20:30"
+      },
+      "freitag": {
+        "von": "09:00",
+        "bis": "18:00"
+      },
+      "samstag": {
+        "von": "10:30",
+        "bis": "16:30"
+      }
+    },
+    "angeboteneDienstleistungen": ["Haarschnitt", "Haarstyling"],
+    "mitarbeiter": [
+      {
+        "name": "Laura Meier",
+        "spezialgebiet": "Hochsteckfrisuren",
+        "verfuegbarkeit": {
+          "montag": true,
+          "dienstag": false,
+          "mittwoch": true,
+          "donnerstag": true,
+          "freitag": true,
+          "samstag": true
+        }
+      },
+      {
+        "name": "Tom Becker",
+        "spezialgebiet": "Bartpflege",
+        "verfuegbarkeit": {
+          "montag": true,
+          "dienstag": true,
+          "mittwoch": false,
+          "donnerstag": true,
+          "freitag": true,
+          "samstag": false
+        }
+      }
+    ]
+  }
+]
