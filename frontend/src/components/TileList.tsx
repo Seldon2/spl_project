@@ -1,25 +1,24 @@
 import React from "react";
 import Tile from "../components/Tile";
+import { type IBarber } from "../types";
 
 interface TileListProps {
-  tiles: {
-    name: String;
-    address: String;
-    telephoneNum: String;
-    email: String;
-  }[];
+  barbers: IBarber[];
 }
 
-const TileList: React.FC<TileListProps> = ({ tiles }) => {
+const TileList: React.FC<TileListProps> = ({ barbers }) => {
   return (
     <div>
-      {tiles.map((tile, idx) => (
+      {barbers.map((barber, idx) => (
         <Tile
           key={idx}
-          address={tile.address}
-          name={tile.name}
-          telephoneNum={tile.telephoneNum}
-          email={tile.email}
+          zip={barber.adresse.plz}
+          city={barber.adresse.stadt}
+          street={barber.adresse.strasse}
+          name={barber.name}
+          telephoneNum={barber.kontakt.telefon}
+          email={barber.kontakt.email}
+          services={barber.angeboteneDienstleistungen}
         />
       ))}
     </div>

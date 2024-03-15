@@ -1,37 +1,58 @@
 import React from "react";
 import { BsScissors } from "react-icons/bs";
 import { GiBeard } from "react-icons/gi";
+import { IoColorPalette } from "react-icons/io5";
 
 interface TileProps {
   name: String;
-  address: String;
+  zip: String;
+  street: String;
+  city: String;
   telephoneNum: String;
   email: String;
+  services: String[];
 }
 
-const Tile: React.FC<TileProps> = ({ name, address, telephoneNum, email }) => {
+const Tile: React.FC<TileProps> = ({
+  name,
+  zip,
+  street,
+  city,
+  telephoneNum,
+  email,
+  services,
+}) => {
+  const hasService = (service: string) => services.includes(service);
   return (
-    <div className="flex justify-between border-2 w-1/2 bg-white px-4 rounded-2xl">
+    <div className="flex justify-evenly border-2 w-1/2 bg-white py-2 rounded-2xl">
       <img
-        src="images/Haarzauber.jpg"
+        src={`images/${name}.jpg`}
         alt="Friseur Logo"
-        className="h-32 w-32 rounded-2xl object-cover my-auto"
+        className="h-32 w-48 rounded-2xl object-cover my-auto mx-2"
       />
       <div className="flex-1 mx-2">
-        <h1 className="font-bold">{name} Friseur</h1>
-        <h2>{address}</h2>
+        <h1 className="font-bold">{name}</h1>
+        <h2>
+          {street}, {zip} {city}
+        </h2>
         <h2>{telephoneNum}</h2>
         <h2>{email}</h2>
-        <div className="flex">
-          <div className="bg-gray-200 h-auto w-max py-0.5 px-1 rounded-md mx-1">
-            €30 - €40
-          </div>
-          <div className="bg-gray-200 h-auto w-max py-0.5 px-1 rounded-md mx-1">
-            <BsScissors />
-          </div>
-          <div className="bg-gray-200 h-auto w-max py-0.5 px-1 rounded-md mx-1">
-            <GiBeard />
-          </div>
+        <div className="flex flex-row m-0 mt-1">
+          {hasService("Haarschnitt") && (
+            <div className="flex items-center justify-center bg-gray-200 h-auto w-max rounded-md p-1">
+              <BsScissors className="text-blue-900" />
+            </div>
+          )}
+          {hasService("Faerben") && (
+            <div className="flex items-center justify-center bg-gray-200 h-auto w-max rounded-md p-1 mx-2">
+              <IoColorPalette className="text-blue-900" />
+            </div>
+          )}
+          {hasService("Bardstyling") && (
+            <div className="flex items-center justify-center bg-gray-200 h-auto w-max rounded-md p-1 -mx-2">
+              <GiBeard className="text-blue-900" />
+            </div>
+          )}
         </div>
       </div>
       <div className="flex items-center">
