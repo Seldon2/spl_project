@@ -1,18 +1,40 @@
-import React from "react";
+import React, { useState } from "react";
 import { useQuery } from "@apollo/client";
 import { GET_ALL_FRISEURE } from "./queries";
+import  InputBox  from './components/InputBox';
 
 const App = () => {
-  const { loading, error, data } = useQuery(GET_ALL_FRISEURE);
+  const [outputData, setOutputData] = useState(null);
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error.message}</p>;
+  const handleInputSubmit = async (inputData: any) => {
+    try {
+      const response = await fetch('YOUR_BACKEND_ENDPOINT', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ inputData }),
+      });
 
-  console.log(data);
+      if (!response.ok) {
+        throw new Error('Failed to process data');
+      }
+
+      const jsonData = await response.json();
+      setOutputData(jsonData);
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
 
   return (
-    <div className="h-34 w-17 bg-red-400">
-      <h1>App</h1>
+    <div>
+      <InputBox onInputSubmit={handleInputSubmit} />
+      {outputData && (
+        <pre className="mt-4 p-4 bg-gray-200 rounded-md">
+          {JSON.stringify(outputData, null, 2)}
+        </pre>
+      )}
     </div>
   );
 };
