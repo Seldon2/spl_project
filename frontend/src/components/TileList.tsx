@@ -8,7 +8,7 @@ interface TileListProps {
 
 const TileList: React.FC<TileListProps> = ({ barbers }) => {
   return (
-    <div>
+    <div className="w-full flex flex-col justify-center items-center">
       {barbers.map((barber, idx) => (
         <Tile
           key={idx}

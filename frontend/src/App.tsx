@@ -11,7 +11,8 @@ const App = () => {
   console.log(data.getAllFriseure);
 
   return (
-    <div className="bg-gray-200 h-screen">
+    <div className="bg-gray-200 h-screen flex flex-col justify-center items-center">
+      <h1 className="text-3xl font-bold mb-8">Friseur Finder</h1>
       <ListingPage barbers={data.getAllFriseure} />
     </div>
   );
