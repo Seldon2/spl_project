@@ -1,6 +1,7 @@
 // friseurModel.js
 const mongoose = require("mongoose");
 
+
 const TerminSchema = new mongoose.Schema({
   datum: Date,
   vorname: String,

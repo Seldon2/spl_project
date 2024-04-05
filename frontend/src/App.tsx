@@ -8,8 +8,6 @@ const App = () => {
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
 
-  console.log(data.getAllFriseure);
-
   return (
     <div className="bg-gray-200 h-screen flex flex-col justify-center items-center">
       <h1 className="text-3xl font-bold mb-8">Friseur Finder</h1>

@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { BsScissors } from "react-icons/bs";
 import { GiBeard } from "react-icons/gi";
 import { IoColorPalette } from "react-icons/io5";
+import { BOOK_APPOINTMENT } from "../mutations";
+import { useMutation } from "@apollo/client";
 
 interface TileProps {
   name: String;
@@ -30,6 +32,23 @@ const Tile: React.FC<TileProps> = ({
     service: "",
     date: "",
   });
+
+  
+const [mutate, { loading, error }] = useMutation(BOOK_APPOINTMENT);
+
+  const handleClick = () => {
+    // Erstelle ein Objekt aus den Buchungsdaten
+    const bookingInput = {
+      friseurId: "testea", // Replace with actual hairdresser ID
+      datum: bookingData.date,
+      uhrzeit: bookingData.time,
+      dienstleistung: bookingData.service,
+      vorname: bookingData.firstName,
+      nachname: bookingData.lastName,
+    };
+  
+    mutate({ variables: { input: bookingInput } });
+  };
 
   const hasService = (service: string) => services.includes(service);
 
@@ -188,7 +207,7 @@ const Tile: React.FC<TileProps> = ({
           )}
             </div>
             </div>
-            <button className="bg-blue-500 text-white py-2 px-4 rounded-lg">
+            <button className="bg-blue-500 text-white py-2 px-4 rounded-lg" onClick={() => handleClick()}>
               Buchen
             </button>
           </div>
