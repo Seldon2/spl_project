@@ -3,8 +3,10 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const dotenv = require("dotenv");
-const FriseurModel = require("./friseurModel");
+const friseurModel = require("./friseurModel");
 const friseurResolver = require("./friseurResolver");
+const terminModel = require("./terminModel");
+const terminResolver = require("./terminResolver");
 
 dotenv.config();
 
@@ -77,9 +79,43 @@ const typeDefs = `
     getFriseur(id: ID!): Friseur
     getAllFriseure: [Friseur]
   }
+
+  type Termin {
+    id: ID!
+    datum: Date!
+    vorname: String!
+    nachname: String!
+    zeitpunkt: String!
+    friseurId: String!
+    dienstleistungen: {
+      faerben: Boolean!
+      schneiden: Boolean!
+      styling: Boolean!
+    }
+  }
+
+  type Mutation {
+    bookAppointment(input: BookAppointmentInput!): Termin
+  }
+  
+  input BookAppointmentInput {
+    friseurId: ID!
+    datum: String!
+    zeitpunkt: String!
+    vorname: String!
+    nachname: String!
+    dienstleistungen: {
+      faerben: Boolean!
+      schneiden: Boolean!
+      styling: Boolean!
+    }
+  }
 `;
 
-const resolvers = [friseurResolver];
+const resolvers = [
+  friseurResolver,
+  terminResolver,
+];
 
 async function startServer() {
   const server = new ApolloServer({
