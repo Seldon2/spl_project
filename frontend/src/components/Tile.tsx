@@ -29,7 +29,6 @@ const Tile: React.FC<TileProps> = ({
     firstName: "",
     lastName: "",
     time: "",
-    service: "",
     date: "",
   });
 
@@ -42,7 +41,6 @@ const [mutate, { loading, error }] = useMutation(BOOK_APPOINTMENT);
       friseurId: "testea", // Replace with actual hairdresser ID
       datum: bookingData.date,
       uhrzeit: bookingData.time,
-      dienstleistung: bookingData.service,
       vorname: bookingData.firstName,
       nachname: bookingData.lastName,
     };

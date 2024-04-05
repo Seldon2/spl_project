@@ -80,20 +80,13 @@ const typeDefs = `
     getAllFriseure: [Friseur]
   }
 
-  type dienstleistungen {
-    faerben: Boolean!
-    schneiden: Boolean!
-    styling: Boolean!
-  }
-
   type Termin {
     id: ID!
-    datum: Date!
+    datum: String!
     vorname: String!
     nachname: String!
     zeitpunkt: String!
     friseurId: String!
-    dienstleistungen: dienstleistungen!
   }
 
   type Mutation {
@@ -106,7 +99,6 @@ const typeDefs = `
     zeitpunkt: String!
     vorname: String!
     nachname: String!
-    dienstleistungen: dienstleistungen!
   }
 `;
 

@@ -3,15 +3,14 @@ const terminModel = require("./friseurModel");
 
 const resolvers = {
   Mutation: {
-    bookAppointment: async (_, {friseurid, vorname, nachname, datum, zeitpunkt, dienstleistungen}) => {
+    bookAppointment: async (_, {friseurid, vorname, nachname, datum, zeitpunkt}) => {
         try{
             const termin = await terminModel.create({
                 friseurid, 
                 vorname, 
                 nachname, 
                 datum, 
-                zeitpunkt, 
-                dienstleistungen
+                zeitpunkt
             })
             return termin;
         }catch(error){

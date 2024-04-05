@@ -8,7 +8,6 @@ const BOOK_APPOINTMENT = gql`
             uhrzeit
             vorname
             nachname
-            dienstleistungen
         }
     }
 
@@ -18,11 +17,6 @@ const BOOK_APPOINTMENT = gql`
         uhrzeit: String!
         vorname: String!
         nachname: String!
-        dienstleistungen: {
-            faerben: Boolean!
-            styling: Boolean!
-            schneiden: Boolean!
-        }
     }
 `;
 
